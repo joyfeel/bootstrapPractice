@@ -1,0 +1,18 @@
+	<div id="left">
+		<ul class="cmdSelected">
+			<li class="cmdTitle">Test Case D</li>
+				<li class="cmdTypeE">GPP1<span hidden>143</span></li>
+				<li class="cmdTypeE">GPP2<span hidden>146</span></li>
+				<li class="cmdTypeE">GPP3<span hidden>149</span></li>
+				<li class="cmdTypeE">GPP4<span hidden>152</span></li>				
+				<li class="cmdTypeF">UDA<span hidden>0</span></li>
+				<li class="cmdTypeB">Complete<span hidden>1</span></li>
+		</ul>
+	</div>
+
+
+
+
+	$( "li.cmdTypeE" ).on("click", function() {
+		var selected = $(this).text().replace(/\d+$/, "");
+	});

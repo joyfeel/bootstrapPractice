@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<html>
+    <head>
+        <title> Ajax send test </title>
+        <script src="jquery-1.11.2/jquery-1.11.2.min.js"></script>
+        <link href="multiselect/css/multi-select.css" media="screen" rel="stylesheet" type="text/css">
+        <script src="multiselect/js/jquery.multi-select.js" type="text/javascript"></script>
+
+		<script>
+            $(function(){
+				var cmdArray = new Array();
+				var cmdParameterArray = new Array();
+				var count;
+				//var count = 0;	
+				
+				$('#keep-order').multiSelect({
+					  keepOrder: true,
+					  //autoOpen: true,
+
+					  afterSelect: function(myvalue){
+						  
+						  //alert($('#keep-order option:selected').text());
+
+
+						  cmdArray.push(myvalue[0])
+						  count = myvalue[0].match(/\d+/);
+
+
+						//alert(jQuery.type(myvalue[0]));
+						alert(myvalue[0]);
+
+$('#keep-order').multiSelect('addOption', { value: 'Cmd4', text: 'Command 4', index: (count-1) });
+/*
+  	$('#keep-order').multiSelect('addOption', { value: 55, text: '55', index: (count-1) });
+*/
+						  //count++;
+					  },
+					  afterDeselect: function(removeValue){
+
+						//alert(removeValue);
+/*
+						  cmdArray = jQuery.grep(cmdArray, function (seleteValue) {
+						      return seleteValue != removeValue;
+					      });
+*/
+						cmdArray.splice( $.inArray(removeValue, cmdArray), 1);	// delete the removeValue from array
+						//$("#debug").text(cmdArray);
+					  }
+				});
+
+
+
+
+                $('#debug').click(function (){		// show button
+	
+  				    $('#keep-order').multiSelect('addOption', { value: 42, text: 'test 42', index: 2 });
+
+
+
+                });
+
+				$("#addText").click(function () {	// CmdSelected button
+					if ( cmdArray.length != 0 ) {
+						$.each( cmdArray, function(){
+                        	var newTextBoxDiv = $(document.createElement('div'))
+	     			    		.attr("id", 'TextBoxDiv' + count);
+
+					    	newTextBoxDiv.after().html('<label>' + this + ' : </label>' +
+			  					'<input type="text" name="textbox' + count + 
+			  					'" id="textbox' + count + '" value="" >');
+							newTextBoxDiv.appendTo("#TextBoxesGroup");
+							count++;
+                        });
+						$(this).hide();
+					} else {
+						alert("Please select at least one command.");
+					}					 	
+				});		//end #addText
+
+
+				$("#reset").click(function () {	// Reset button
+					//count = 0;
+					for (var i = 0; i < cmdArray.length; i++) {
+						$("#TextBoxDiv" + i).remove();
+					}
+				});
+
+				$("#btn").click(function (){
+					var testStr = 0;
+					for (var i = 0; i < cmdArray.length; i++) {
+						cmdParameterArray.push($("#textbox" + i).val());
+						testStr += $("#textbox" + i).val();
+					}
+
+					alert (testStr);
+
+					$.ajax({
+						url: 'receive2.php',
+						cache: false,
+						dataType: 'html',
+					    type:'POST',
+						data: { cmdArray, cmdParameterArray},
+						error: function(xhr) {
+							alert('Ajax request error!');
+						},
+						success: function(response) {
+						    $('#msg').html(response);
+							$('#msg').fadeIn();
+						}
+				    });		//end ajax
+
+
+
+				});
+	    });
+
+        </script>
+
+
+    </head>
+    <body>
+		<form method="post">
+		    <select id='keep-order'  multiple='multiple'>
+		        <option value='Cmd1'>Command 1</option>
+		        <option value='Cmd2'>Command 2</option>
+		        <option value='Cmd3'>Command 3</option>
+		        <option value='Cmd4'>Command 4</option>
+		        <option value='Cmd5'>Command 5</option>
+		    </select>
+		  
+		    <p id='debug'> debug </p>
+
+		    <div id = 'TextBoxesGroup'>
+		    </div>
+
+		    <input type = 'button' value= 'CmdSelected' id='addText'>
+		    <input type = 'button' value= 'Reset' id='reset'>
+		    <input type = 'button' value= 'SendCommand' id='btn'>
+
+
+			<div id="msg"> </div>
+       </form>
+   </body>
+</html>
+
+
+<!DOCTYPE html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<html>
+    <head>
+        <title> Ajax send test </title>
+
+		<link rel="stylesheet" href="jqueryUI/jquery-ui.css">		
+		<script src="jqueryUI/external/jquery/jquery.js"></script>
+		<script src="jqueryUI/jquery-ui.js"></script>
+		<script>
+        $( document ).ready(function(){
+ 			$( ".cmdSelected" ).menu({					//Create cmdSelected menu
+				items: "> :not(.cmdTypeA)"
+
+			});
+
+ 			$( ".cmdFIFO" ).menu({						//Create cmdFIFO menu
+			});
+
+
+			$( "ul .cmdSelected" ).on("click", "li:not(.cmdTypeA, .cmdTypeB, .cmdTypeC)", function() {
+				var selected = $(this).text();
+				alert("List A Item: " + selected);
+			});
+
+
+
+/*
+                        	var newTextBoxDiv = $(document.createElement('div'))
+	     			    		.attr("id", 'TextBoxDiv' + count);
+
+					    	newTextBoxDiv.after().html('<label>' + this + ' : </label>' +
+			  					'<input type="text" name="textbox' + count + 
+			  					'" id="textbox' + count + '" value="" >');
+							newTextBoxDiv.appendTo("#TextBoxesGroup");
+
+
+		    <div id = 'TextBoxesGroup'>
+		    </div>
+
+			:not(.ui-widget-header)		
+			$("#menu").on("click", "li.ui-widget-header", function(event) {
+				alert(event);
+			});
+
+			$( "#menu" ).each(function( i, obj ) {
+
+				$(this).click(function(e) {
+					alert($(this).text());
+				});
+
+				alert(obj);
+			});
+
+
+		<ul id="commandList">
+			<li class="ui-widget-header2">FIFO</li>
+			
+		</ul>
+
+*/
+
+    	});
+        </script>
+
+ 		<style>
+			.ui-menu { 
+				width: 200px; 
+			}
+			.cmdTypeA .cmdTypeB .cmdTypeC { padding: 0.2em; }
+
+			#cmdSelected {
+				height: 500px;
+				width: 20%;
+				overflow: hidden;
+				overflow-x: hidden;
+				overflow-y: scroll;
+			}
+
+			#cmdFIFO {
+				height: 500px;
+				width: 20%;
+				overflow: hidden;
+				overflow-x: hidden;
+				overflow-y: scroll;
+			}
+
+			#cmdSelected {
+				float: left;	
+			}
+
+			#cmdFIFO {
+				margin-left: 30%;
+				background-color: #ccc;
+			}
+	
+
+		</style>
+    </head>
+    <body>
+
+		<ul class="cmdSelected">
+			<li class="cmdTypeA">Class A</li>
+				<li>Command 1</li>
+				<li>Command 2</li>
+				<li>Command 3</li>
+			<li class="cmdTypeB">Class B</li>
+				<li>Command 4</li>
+				<li>Command 5</li>
+				<li>Command 6</li>
+				<li>Command 7</li>
+				<li>Command 8</li>
+				<li>Command 9</li>
+				<li>Command 10</li>
+				<li>Command 11</li>
+				<li>Command 12</li>
+				<li>Command 13</li>
+			<li class="cmdTypeC">Class C</li>
+				<li>Command 20</li>
+				<li>Command 21</li>
+				<li>Command 22</li>
+				<li>Command 23</li>
+				<li>Command 24</li>
+				<li>Command 25</li>
+				<li>Command 26</li>
+				<li>Command 27</li>
+				<li>Command 28</li>
+				<li>Command 29</li>
+		</ul>
+
+
+
+		<ul class="cmdFIFO">
+			<li> A </li>
+			<li> B </li>
+		</ul>
+
+
+
+		<p id="debug"> Meow~ </p>
+   </body>
+</html>
