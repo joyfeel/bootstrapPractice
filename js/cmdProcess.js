@@ -175,8 +175,8 @@ $(function() {
 		$(this).parent().remove();
 	});	
 
-	$( "#buttonReset" ).click(function() {
-		$( "#buttonSend" ).show();
+	$( ".buttonReset" ).click(function() {
+		$( ".buttonSend" ).show();
 		cmdCount.initialization();
 		fileCount.initialization();
 		resetGlobalVariable();

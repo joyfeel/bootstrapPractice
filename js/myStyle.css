@@ -1,40 +1,4 @@
-* {
-	-webkit-box-sizing: border-box;
-	   -moz-box-sizing: border-box;
-	    	box-sizing: border-box;
-}
 
-body {
-	margin: 0 auto;
-}
-/*
-body{margin:0 auto;}
-
-#content{width:800px;
-              margin:0 auto;}
-              background-color:#69C;
-
-#top{width:800px;
-          height:80px;
-          background-color:#CF6;}
-
-#nav{width:800px;
-          height:40px;
-          background-color:#F96;}
-
-#left{width:120px;
-         float:left;}
-
-#main{width:680px;
-          min-height:588px;
-          background-color:#CFF;
-          float:right;}
-
-#foot{width:800px;
-         height:60px;
-         background-color:#390;
-         clear:both;}
-*/
 #content {
 	max-width: 1700px;
 	margin: 0 auto;
@@ -52,7 +16,7 @@ body{margin:0 auto;}
 }
 
 #main {
-	height: 800px;
+	height: 500px;
 	width: 1300px;
 	float: right;
 	background-color: #CFF;
@@ -73,26 +37,12 @@ body{margin:0 auto;}
 	overflow-y: scroll;
 }
 
-
-/*
-.TextBoxesGroup {
-	height: 500px;
-	max-width: 70%;
-	overflow: hidden;
-	overflow-x: hidden;
-	overflow-y: scroll;
-	
-}
-
-
-*/
-
 .TextBoxesGroup {
 	height: 400px;
 	overflow: hidden;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	margin-left: 1%;
+	//margin-left: 1%;
 }
 
 .ResponseGroup {
@@ -100,32 +50,8 @@ body{margin:0 auto;}
 	overflow: hidden;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	margin-left: 1%;
-
+	//margin-left: 1%;
 }
-/*
-#nav {
-	max-width: 1000px;
-	height:40px;
-	background-color:#F96;
-}
-*/
-/*
-fieldset {
-	margin: 0;
-	padding: 0;
-	border-width: 0;
-}
-*/
-/*
-.ui-menu { 
-	width: 150px; 
-}
-*/
-
-
-
-
 
 .divTextBox {
 	padding-left 	: 15px;
@@ -155,4 +81,5 @@ fieldset {
 .fileTextBoxSetting {
 	margin-left : 7px;
 }
+
 

@@ -1,107 +1,83 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
-<META content="text/html;charset=utf-8" http-equiv="Content-Type">
-<META NAME="joyfeel" CONTENT="kfcTester">
-<html>
+<!DOCTYPE html>
+
+<html lang="en">
     <head>
         <title> kfcTester </title>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<link rel="stylesheet" href="js/css/node_modules/normalize.css">			
-		<link rel="stylesheet" href="js/jqueryUI/jquery-ui.min.css">	
-		<link rel="stylesheet" href="js/myStyle.css">			
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<script src="js/jquery/jquery-2.1.3.min.js"></script>
-		<script src="js/jqueryUI/jquery-ui.min.js"></script>
-		<script src="js/cmdProcess.js"></script>
-		<script>
-        $( document ).ready(function(){				
- 			$( ".cmdSelected" ).menu({					//Create
-				items: "> :not(.cmdTitle)"
-			});
-    	});
-        </script>
+		<link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="js/jqueryUI/jquery-ui.min.css">	
+		<link rel="stylesheet" href="js/myStyle.css">	
+
+		<!-- Some useless include files
+			<link rel="stylesheet" href="js/css/node_modules/normalize.css">			
+		-->
+
     </head>
     <body>
+
+		<script src="js/jquery/jquery-2.1.3.min.js"></script>
+		<!--
+		<script src="js/jqueryUI/jquery-ui.min.js"></script>
+		-->
+		<script src="js/cmdProcess.js"></script>
+		<script src="js/bootstrap/js/bootstrap.min.js"></script>
+
+        <div class="container-fluid">
+        	<div class="jumbotron">
+    			<p>Resize this responsive page to see the effect!</p> 
+  		    </div>
+        	<div class="row">
+        		<div class="col-xs-3 col-lg-3 cmdSelected" style="background-color:lavender;">
+        			<ul class="nav nav-pills nav-stacked">
+        				
+
+        				<li class="cmdTitle">eMMC Command</li>
+        				<li><a href="#">LOL</a></li>
+        				<li role="presentation">1</li>
+        				<li role="presentation">2</li>
+        				<li role="presentation">3</li>
+        				<ul role="presentation">
+        					<li>4</li>
+        					<li>5</li>
+        				</ul>
+        				<li role="presentation">6</li>
+        			</ul>
+
+        		</div>
+
+        		<div class="col-xs-9 col-lg-9">
+        			<div class="short-div TextBoxesGroup" style="background-color:green">
+	        			<P>123123123123131</P>
+	        			<P>123123123123131</P>
+	        			<P>123123123123131</P>
+	        			<P>123123123123131</P>
+	        			<P>123123123123131</P>
+        			</div>
+        			<div class="short-div ResponseGroup" style="background-color:blue">
+	        			<P>123123123123131</P>
+	        			<P>123123123123131</P>
+	        			<P>123123123123131</P>
+	        			<P>123123123123131</P>
+	        			<P>123123123123131</P>
+        			</div>
+        		</div>
+
+
+        	</div>
+        	<div class="row">
+        		<div class="col-xs-3 col-lg-3" style="background-color:lavenderblush;">
+        			<button type="button" class="btn btn-default buttonSend">Send</button>
+        			<input type="submit" class="btn btn-default" value="Reset">
+        		</div>
+
+        	</div>
+
+        </div>
+
+
 		<!-- content -->
-		<div id="content">
-			<div id="top">
-				kfcTester
-			</div>
-			<!-- left -->
-			<div id="left">
-				<ul class="cmdSelected">
-					<li class="cmdTitle">kfc Command</li>
-						<li class="cmdTypeA">Command 50</li> 
-						<li class="cmdTypeA">Command 100</li> 
-					<li class="cmdTitle">Test case A</li>
-						<li class="cmdTypeB">Basic write (no data verification)<span hidden>1</span></li>
-						<li class="cmdTypeB">Basic read (no data verification)<span hidden>2</span></li>
-						<li class="cmdTypeB">Basic write (with data verification)<span hidden>3</span></li>
-						<li class="cmdTypeB">Basic read (with data verification)<span hidden>4</span></li>
-						<li class="cmdTypeB">Multi-block write<span hidden>5</span></li>
-						<li class="cmdTypeB">Multi-block read<span hidden>6</span></li>
-						<li class="cmdTypeB">Power of two block writes<span hidden>7</span></li>
-						<li class="cmdTypeB">Power of two block reads<span hidden>8</span></li>
-						<li class="cmdTypeB">Weird sized block writes<span hidden>9</span></li>
-						<li class="cmdTypeB">Weird sized block reads<span hidden>10</span></li>
-						<li class="cmdTypeB">Badly aligned write<span hidden>11</span></li>
-						<li class="cmdTypeB">Badly aligned read<span hidden>12</span></li>
-						<li class="cmdTypeB">Badly aligned multi-block write<span hidden>13</span></li>
-						<li class="cmdTypeB">Badly aligned multi-block read<span hidden>14</span></li>
-						<li class="cmdTypeB">Correct xfer_size at write (start failure)<span hidden>15</span></li>
-						<li class="cmdTypeB">Correct xfer_size at read (start failure)<span hidden>16</span></li>
-						<li class="cmdTypeB">Correct xfer_size at write (midway failure)<span hidden>17</span></li>
-						<li class="cmdTypeB">Correct xfer_size at read (midway failure)<span hidden>18</span></li>
-<!--
-						<li class="cmdTypeB">Highmem write<span hidden>19</span></li>
-						<li class="cmdTypeB">Highmem read<span hidden>20</span></li>
-						<li class="cmdTypeB">TEST WRITE<span hidden>49</span></li>
--->
-						<li class="cmdTypeB">SDP<span hidden>51</span></li>
-						<li class="cmdTypeB">SBP1<span hidden>52</span></li>
-						<li class="cmdTypeB">SBP2<span hidden>53</span></li>
-						<li class="cmdTypeB">SRP<span hidden>54</span></li>
-					<!-- CMDType = 2<p class = 'cmdType' hidden>" + cmdType[1] + "</p>" + -->
-					<li class="cmdTitle">Test Case B</li>
-						<li class="cmdTypeC">LISTEN<span hidden>0</span></li>
-						<li class="cmdTypeC">TALK<span hidden>1</span></li>
-					<!-- CMDType = 4 -->
-					<li class="cmdTitle">Test Case C</li>
-						<li class="cmdTypeD">DELETE<span hidden>0</span></li>
-
-					<li class="cmdTitle">Test Case D</li>
-						<li class="cmdTypeE">APP1<span hidden>143</span></li>
-						<li class="cmdTypeE">APP2<span hidden>146</span></li>
-						<li class="cmdTypeE">APP3<span hidden>149</span></li>
-						<li class="cmdTypeE">APP4<span hidden>152</span></li>			
-						<li class="cmdTypeF">AUDA<span hidden>0</span></li>
-						<li class="cmdTypeB">Finished<span hidden>57</span></li>
-				</ul>
-			</div>
-
-			<!-- main -->
-			<div id="main">
-				<div class="TextBoxesGroup">
-				</div>
-				<div class="ResponseGroup">
-				</div>
-			</div>
-
-			<!-- nav button -->
-			<div id="nav">
-				<form action="#" enctype="multipart/form-data" method="post">
-					<fieldset>
-						<input type="submit" id="buttonSend" value="Send">
-						<input type="button" id="buttonReset" value="Reset">
-					</fieldset>
-				</form>
-			</div>
-
-			<!-- foot Copyright -->
-			<div id="foot">
-
-
-			</div>
-		</div>
-
+	
    </body>
 </html>

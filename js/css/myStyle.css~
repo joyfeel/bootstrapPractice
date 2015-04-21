@@ -16,6 +16,7 @@
 	overflow: hidden;
 	overflow-x: hidden;
 	overflow-y: scroll;
+	float: left;
 }
 
 #TextBoxesGroup {
@@ -26,9 +27,6 @@
 	overflow-y: scroll;
 }
 
-.cmdSelected {
-	float: left;
-}
 
 #TextBoxesGroup {
 	margin-left: 20%;
